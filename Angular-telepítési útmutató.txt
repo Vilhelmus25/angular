@@ -1,0 +1,13 @@
+Telepítsd a node js-t, böngészõbõl.
+
+Power Shell:	Set-ExecutionPolicy RemoteSigned -Scope CurrentUser		-- hogy ne legyen gond a jogosultságokkal a vs code-ban.
+
+VS Code-terminal:	npm i @angular/cli -g		--globálisan telepíti a -g -vel
+
+Angular:
+ng 	parancs (az angular rövidítése)
+ng new ang-basic-setup		--egy basic app setupja
+utána be kell lépni a mappába   code . -r
+ng serve -o		--indít egy servert, olyasmi mint a liveserver	(-o  (open) az 				alapértelmezett böngészõben nyitja meg)
+
+.ts fájlok...
