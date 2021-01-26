@@ -3,14 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { PrefixPipe } from './pipe/prefix.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeroDetailComponent,
-    PrefixPipe
+    AppComponent
   ],
   imports: [
     BrowserModule,

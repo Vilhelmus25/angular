@@ -1,20 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { PrefixPipe } from './pipe/prefix.pipe';
+import { PricingPageComponent } from './pricing-page/pricing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroDetailComponent,
-    PrefixPipe
+    PricingPageComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

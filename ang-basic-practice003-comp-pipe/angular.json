@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "myFirstAngularApp": {
+    "ang-basic-practice003-comp-pipe": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,17 +20,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/myFirstAngularApp",
+            "outputPath": "dist/ang-basic-practice003-comp-pipe",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -68,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "myFirstAngularApp:build"
+            "browserTarget": "ang-basic-practice003-comp-pipe:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "myFirstAngularApp:build:production"
+              "browserTarget": "ang-basic-practice003-comp-pipe:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "myFirstAngularApp:build"
+            "browserTarget": "ang-basic-practice003-comp-pipe:build"
           }
         },
         "test": {
@@ -116,19 +117,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "myFirstAngularApp:serve"
+            "devServerTarget": "ang-basic-practice003-comp-pipe:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "myFirstAngularApp:serve:production"
+              "devServerTarget": "ang-basic-practice003-comp-pipe:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "myFirstAngularApp",
+  "defaultProject": "ang-basic-practice003-comp-pipe",
   "cli": {
-    "analytics": "a1037ef8-31d6-4152-ba8d-b164178e98ea"
+    "analytics": "988bb731-02c2-4dcd-be82-9a93497b35cc"
   }
 }

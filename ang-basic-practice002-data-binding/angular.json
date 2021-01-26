@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "myFirstAngularApp": {
+    "ang-basic-practice001-data-binding": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/myFirstAngularApp",
+            "outputPath": "dist/ang-basic-practice001-data-binding",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,9 +31,14 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -68,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "myFirstAngularApp:build"
+            "browserTarget": "ang-basic-practice001-data-binding:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "myFirstAngularApp:build:production"
+              "browserTarget": "ang-basic-practice001-data-binding:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "myFirstAngularApp:build"
+            "browserTarget": "ang-basic-practice001-data-binding:build"
           }
         },
         "test": {
@@ -116,19 +121,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "myFirstAngularApp:serve"
+            "devServerTarget": "ang-basic-practice001-data-binding:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "myFirstAngularApp:serve:production"
+              "devServerTarget": "ang-basic-practice001-data-binding:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "myFirstAngularApp",
+  "defaultProject": "ang-basic-practice001-data-binding",
   "cli": {
-    "analytics": "a1037ef8-31d6-4152-ba8d-b164178e98ea"
+    "analytics": "83fba59d-576b-4db8-917e-62aa987f2ee0"
   }
 }

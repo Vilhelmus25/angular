@@ -1,6 +1,6 @@
 <ul>
     <li>
-        <p>{{ hero.name }}</p>
+        <p>{{ hero.name | prefix:'Herr.' }}</p> <!-- Így adunk értéket a pipe-nak, alaból Mr. de most Herr.  így-e! -->
     </li>
     <li>
         <p>{{ hero.address }}</p>

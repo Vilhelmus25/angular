@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "sass"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -31,7 +31,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.sass"
             ],
             "scripts": []
           },
@@ -94,7 +94,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.sass"
             ],
             "scripts": []
           }
@@ -129,6 +129,6 @@
   },
   "defaultProject": "myFirstAngularApp",
   "cli": {
-    "analytics": "a1037ef8-31d6-4152-ba8d-b164178e98ea"
+    "analytics": "65d59e40-0bf7-4e1b-8631-ff970b92b88a"
   }
 }
