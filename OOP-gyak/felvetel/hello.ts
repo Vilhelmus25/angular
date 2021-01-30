@@ -36,6 +36,7 @@ const printGreeting: printFn = function (nameParam: name) {
     );
     document.body.innerHTML = g.greet();
 };
+
 printGreeting(nameParam);
 
 

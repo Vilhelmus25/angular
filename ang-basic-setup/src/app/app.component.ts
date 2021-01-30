@@ -8,3 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ang-basic-setup';
 }
+// ng generate component watch      --készítek egy új komponenst, az a neve hogy watch

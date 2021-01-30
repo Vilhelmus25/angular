@@ -4,7 +4,13 @@
   1. Ha az egeret fölé viszik, legyen a háttérszíne halvány szürke.
   2. Ha az egeret fölé viszik, jelenjen meg a mutató kurzor.
 */
-th:hover{
-  background-color: #aaaaaa;
-  cursor: pointer;
+table{
+  thead{
+
+    th:hover{
+      background-color: #aaaaaa;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
 }
