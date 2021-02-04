@@ -12,17 +12,19 @@ import { HeroService } from './serivce/hero.service';
 export class AppComponent {
   title = 'myFirstAngularApp';
 
-  myHero: Hero = {                    // itt hozom létre a myHero objektumot, aminek a hero osztályt be kellett importálni.
+  myHero: Hero = new Hero(); /* = {                    // itt hozom létre a myHero objektumot, aminek a hero osztályt be kellett importálni.
     name: "Magneto",                  // amit az app-componentben csinálok, az megy ki, az a kapocs a model-ek, componensek, egyéb elemek között és az oldal között.
     address: "New York",
     superpower: "magnetic"
-  };
+  }; */
 
-  //listObservable: Observable<any>;           // kell egy observable objektum   <any> most nem tudjuk milyen adat lesz amit átad
+  listObservable: Observable<any>;           // kell egy observable objektum   <any> most nem tudjuk milyen adat lesz amit átad
 
   constructor(private fService: FootballService, private hService: HeroService) {
 
-    this.hService.getAll().forEach(value => {
+    this.listObservable = hService.getAll();
+
+    /* this.hService.getAll().forEach(value => {
       console.log("All hero: ", value);     // lekértük az összes adatot
     });
 
@@ -42,7 +44,9 @@ export class AppComponent {
 
     this.hService.remove(2).forEach(value => {
       console.log("Deleted Hero: ", value);
-    });
+    }); */
+
+
 
 
     /* this.listObservable = new Observable(observer => {        // példányosítjuk.
@@ -60,6 +64,10 @@ export class AppComponent {
     ); */
   }
 
+
+  setHero(hero: Hero): void {
+    this.myHero = hero;
+  }
 
   //      !!!!!!!!!!!!!!!!!       --      npm i -g json-server    --                  json kiszolgáló server telepítése   !!!!!!!!!!!!!!!!!!!!!!!
 
