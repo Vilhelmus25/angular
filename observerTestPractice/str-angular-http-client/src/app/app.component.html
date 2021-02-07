@@ -1,5 +1,51 @@
-<pre> {{ userList$ | async | json}} </pre>
+<!-- <pre> {{ userList$ | async | json}} </pre> -->
+
 <!--  így csak egy [object Object]-et ad -->
 <!-- async pipe ezt orovoslja, ezzel iratkozunk fel és figyeli, hogy mikor jön meg az adat -->
 <!-- a json pipe azért kell, hogy a tömb elemeket meg tudja különböztatni -->
 <!-- a pipe az egy cső, szűkítőcső -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th *ngFor="let col of cols">{{ col.text }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td *ngFor="let col of cols">
+                            <input type=" text" class="form-control" [(ngModel)]="newUser[col.key]">
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button (click)="onAdd(newUser)" class="btn btn-success">
+                                    <i class="fas fa-plus-circle"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngFor="let user of userList$ | async">
+                        <td *ngFor="let col of cols">
+                            <input *ngIf="col.editable" [(ngModel)]="user[col.key]" type="text" class="form-control">
+                            <span *ngIf="!col.editable">{{ user[col.key] }}</span>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button (click)="onUpdate(user)" class="btn btn-info">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                                <button (click)="onDelete(user)" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
