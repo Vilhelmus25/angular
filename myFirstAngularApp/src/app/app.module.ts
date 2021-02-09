@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';                      // ide ezt fel kellett venni!
+import { RouterModule, Routes } from '@angular/router';                       // A route-hoz ezt be kell importálni
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +12,25 @@ import { DelayDirective } from './directive/delay.directive';
 import { HighlightDirective } from './directive/highlight.directive';
 import { FootballService } from './serivce/football.service';
 import { HeroService } from './serivce/hero.service';
+import { HomeComponent } from './home/home.component';
+import { HeroComponent } from './hero/hero.component';
+import { NavComponent } from './nav/nav.component';
+
+
+const appRoutes: Routes = [                     /*  itt létrehoztunk az appRoutes: Routes változót, amiben beállítjuk az utakat (Home,Hero, default("**") */
+  {
+    path: "", component: HomeComponent
+  },
+  {
+    path: "hero", component: HeroComponent
+  },
+  {
+    path: "hero/:id", component: HeroDetailComponent    /* Ebből fogja tudni, az :id-ből, hogy az adott HeroDetailComponentnek, mi az id-je*/
+  },
+  {
+    path: "**", component: HomeComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -17,12 +38,15 @@ import { HeroService } from './serivce/hero.service';
     HeroDetailComponent,
     PrefixPipe,
     DelayDirective,
-    HighlightDirective
+    HighlightDirective,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     HttpClientModule,                            // ide ezt fel kellett venni!
+    RouterModule.forRoot(appRoutes),              // a Routinghoz ezt be kell állítani, bár van feljebb kicsit egy AppRoutingModule
 
   ],
   providers: [FootballService,

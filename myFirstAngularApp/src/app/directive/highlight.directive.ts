@@ -14,19 +14,19 @@ export class HighlightDirective {
     "seagreen"
   ];
 
-  @HostListener('click') onMouseClick() {
+  @HostListener('click') onMouseClick() {                     // HostListener, hogy mire történjenek a dolgok
     let index = Math.floor(Math.random() * this.colors.length);
     this.el.nativeElement.style.backgroundColor = this.colors[index];
   }
 
   constructor(
-    private el: ElementRef
+    private el: ElementRef    // ez kell neki
   ) {
     this.changeColor("yellow");
   }
 
   changeColor(color: string): void {
-    this.el.nativeElement.style.backgroundColor = color;
+    this.el.nativeElement.style.backgroundColor = color;      // az el Elementnek még kell a nativeElement gyermeke, aminek már van style eleme
 
   }
 
