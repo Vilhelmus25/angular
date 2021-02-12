@@ -1,13 +1,59 @@
-<ul [appHighlight]="'blue'">
-    <!-- ilyen dupla aposztrófba kell rakni, mert stringet keresünk, ha nem lenne, akkor változót keresne -->
-    <li>
-        <p>{{ hero.name | prefix:'Herr.' }}</p>
-        <!-- Így adunk értéket a pipe-nak, alaból Mr. de most Herr.  így-e! -->
-    </li>
+<div class="row">
+    <div class="col-6 offset-3">
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm" *ngIf="hero">
+            <!-- sablon referencia-változó az a #heroForm és az ngForm az angular beépített objektuma, az angular minden űrlaphoz létrehozza a saját ngForm objektumát, amin keresztül letudjuk kérdezni az űrlap állapotát, adatait, stb. -->
+            <!-- csak az ngForm objektumot jelenti a #heroForm változó -->
+            <div class="form-group">
+                <label for="heroName">Name</label>
+                <input name="name" id="heroName" [(ngModel)]="hero.name" type="text" class="form-control" required
+                    #heroName="ngModel">
+                <!-- össze kell kötni az inputot a .ts-sel, ezért kell az ngModel; Nem ismeri alapból ezt, ezért ezt importálni kell, a FormsModule-t az app.module.ts-ben -->
+                <div [hidden]="heroName.valid || heroName.pristine" class="error-feedback">
+                    <!-- ha a heroName model az valid, vagy érintetlen -->
+                    Please add a name for hero!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="heroAddress">Address</label>
+                <input name="address" id="heroAddress" type="text" [(ngModel)]="hero.address" class="form-control"
+                    required pattern="[a-zA-Z0-9- \.]{10,}" #hAddress="ngModel">
+                <!-- itt fontos a #heroAddress megadása -->
+                <!-- required: kötelező megadni ;   pattern egy regex, aminek meg kell felelnie a kitöltésnek-->
+                <div [hidden]="hAddress.valid || hAddress.pristine" class="error-feedback">
+                    <!-- ha a heroName model az valid, vagy érintetlen -->
+                    Address must be at least 10 characters!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="heroPower">Super Power</label>
+                <select name="superpower" id="heroPower" [(ngModel)]="hero.superpower" class="form-control" required>
+                    <option *ngFor="let power of superPowers" [value]="power">{{ power }}</option>
+                </select>
+            </div>
+            <button [disabled]="!heroForm.form.valid" type="submit" class="btn btn-success">Update</button>
+            <!-- disabled lesz a gomb, ha nem valid a kitöltési form a formoknál -->
+        </form>
+        <pre>{{ hero | json }}</pre> <!-- ezt ellenőrzésre használjuk, kiiratjuk egyből -->
+        <!-- <pre>{{  | json  }}</pre> -->
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <ul [appHighlight]="'blue'"> -->
+<!-- ilyen dupla aposztrófba kell rakni, mert stringet keresünk, ha nem lenne, akkor változót keresne -->
+<!--  <li>
+        <p>{{ hero.name | prefix:'Herr.' }}</p> -->
+<!-- Így adunk értéket a pipe-nak, alaból Mr. de most Herr.  így-e! -->
+<!--   </li>
     <li>
         <p>{{ hero.address }}</p>
     </li>
     <li>
         <p>{{ hero.superpower }}</p>
     </li>
-</ul>
+</ul> -->

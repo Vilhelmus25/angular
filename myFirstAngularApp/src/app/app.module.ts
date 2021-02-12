@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';                      // ide ezt fel kellett venni!
 import { RouterModule, Routes } from '@angular/router';                       // A route-hoz ezt be kell importálni
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +40,11 @@ const appRoutes: Routes = [                     /*  itt létrehoztunk az appRout
     PrefixPipe,
     DelayDirective,
     HighlightDirective,
-    NavComponent
+    NavComponent,
+    HeroComponent,
+    HeroDetailComponent,
+    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ const appRoutes: Routes = [                     /*  itt létrehoztunk az appRout
     CommonModule,
     HttpClientModule,                            // ide ezt fel kellett venni!
     RouterModule.forRoot(appRoutes),              // a Routinghoz ezt be kell állítani, bár van feljebb kicsit egy AppRoutingModule
+    FormsModule,
 
   ],
   providers: [FootballService,

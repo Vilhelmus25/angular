@@ -10,8 +10,16 @@ import { HeroService } from '../serivce/hero.service';
 })
 export class HeroDetailComponent implements OnInit {
 
-  @Input()
-  hero: Hero = new Hero;          // beállítjuk mint Input, vagyis, a html-ben a [] -közé hivetkozhatok rá, így tudok átadni adatot, szülőkomponensből a gyereknek. Az app-componensben
+  //@Input() hero: Hero = new Hero;          // beállítjuk mint Input, vagyis, a html-ben a [] -közé hivetkozhatok rá, így tudok átadni adatot, szülőkomponensből a gyereknek. Az app-componensben
+
+  hero: Hero = new Hero();
+  superPowers: Array<String> = [
+    "magnetic",
+    "really smart",
+    "rich",
+    "hard",
+    "biking",         // ezt a változót egy osztályba kéne tenni, úgy szép, de most nem.
+  ]
 
   constructor(private hService: HeroService, private ar: ActivatedRoute) {
     this.ar.params.subscribe(params => {
@@ -25,4 +33,10 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(): void {
+    this.hService.update(this.hero)
+      .forEach(value => {
+        console.log("Updated Hero: ", value);
+      });
+  }
 }
