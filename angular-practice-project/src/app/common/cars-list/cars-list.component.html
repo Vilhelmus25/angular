@@ -1,19 +1,24 @@
 <div class="container">
     <div class="row">
+        <div class="col-8">
+            <input type="text" placeholder="Search..." (keyup)="onTypePhrase($event)">
+        </div>
+    </div>
+    <div class="row">
         <div class="col-10">
             <table class="table table-striped">
                 <thead>
-                    <th>ID</th>
-                    <th>fullName</th>
-                    <th>email</th>
-                    <th>ownedCarType</th>
-                    <th>ownedCarModel</th>
-                    <th>carAge</th>
-                    <th>isForSale</th>
-                    <th>estimatedValue</th>
+                    <th (click)="sortByCategory('id')">ID</th>
+                    <th (click)="sortByCategory('fullName')">fullName</th>
+                    <th (click)="sortByCategory('email')">email</th>
+                    <th (click)="sortByCategory('ownedCarType')">ownedCarType</th>
+                    <th (click)="sortByCategory('ownedCarModel')">ownedCarModel</th>
+                    <th (click)="sortByCategory('carAge')">carAge</th>
+                    <th (click)="sortByCategory('isForSale')">isForSale</th>
+                    <th (click)="sortByCategory('estimatedValue')">estimatedValue</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let cars of carsList$ | async'>
+                    <tr *ngFor="let cars of carsList$ | async | filter:searchPhrase:'fullName' |sorter:columnKey">
                         <td>{{ cars.id }}</td>
                         <td>{{ cars.fullName }}</td>
                         <td>{{ cars.email }}</td>
