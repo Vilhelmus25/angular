@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <table class="table table-striped">
+                <thead>
+                    <th>ID</th>
+                    <th>fullName</th>
+                    <th>email</th>
+                    <th>ownedCarType</th>
+                    <th>ownedCarModel</th>
+                    <th>carAge</th>
+                    <th>isForSale</th>
+                    <th>estimatedValue</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let cars of carsList$ | async'>
+                        <td>{{ cars.id }}</td>
+                        <td>{{ cars.fullName }}</td>
+                        <td>{{ cars.email }}</td>
+                        <td>{{ cars.ownedCarType }}</td>
+                        <td>{{ cars.ownedCarModel }}</td>
+                        <td>{{ cars.carAge }}</td>
+                        <td>{{ cars.isForSale }}</td>
+                        <td>{{ cars.estimatedValue }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
