@@ -18,12 +18,16 @@ export class EventEditorComponent implements OnInit {
   event$: Observable<Event> = this.activatedRoute.params.pipe(
     switchMap(params => this.eventService.get(params.id))
   );
+  event: Event = new Event();
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventService: EventService,
     private router: Router,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void { }
 
@@ -35,6 +39,12 @@ export class EventEditorComponent implements OnInit {
       ev => this.router.navigate([''])
     );
 
+  }
+
+  onAddNew(event: Event): void {
+    if (event.id === 0) {
+      this.eventService.create(event);
+    }
   }
 
 }

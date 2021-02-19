@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Event } from '../model/event';
@@ -7,74 +8,65 @@ import { Event } from '../model/event';
 })
 export class EventService {
 
-  private list: Event[] = [
-    {
-      id: 1,
-      name: 'Angular Connect',
-      date: '9/26/2036',
-      time: '10am',
-      location: { address: '1 London Rd', city: 'London', country: 'England' }
-    },
-    {
-      id: 2,
-      name: 'ng-nl',
-      date: '4/15/2037',
-      time: '9am',
-      location: { address: '127 DT ', city: 'Amsterdam', country: 'NL' }
-    },
-    {
-      id: 3,
-      name: 'ng-conf 2037',
-      date: '4/15/2037',
-      time: '9am',
-      location: { address: 'The Palatial America Hotel', city: 'Salt Lake City', country: 'USA' }
-    },
-    {
-      id: 4,
-      name: 'UN Angular Summit',
-      date: '6/10/2037',
-      time: '8am',
-      location: { address: 'The UN Angular Center', city: 'New York', country: 'USA' }
-    },
-  ];
+  // private list: Event[] = this.getAll();
+  private url: string = "http://localhost:3000/event";
 
-  list$: BehaviorSubject<Event[]> = new BehaviorSubject<Event[]>(this.list);
+  //list$: BehaviorSubject<Event[]> = new BehaviorSubject<Event[]>(this.get);
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAll(): void {
+  /* getAll(): void {
     this.list$.next(this.list);
+  } */
+  getAll(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.url);
   }
 
   get(id: number): Observable<Event> {
     id = typeof id === 'string' ? parseInt(id, 10) : id;
-    const ev: Event | undefined = this.list.find(item => item.id === id);
-    if (ev) {
-      return of(ev);
+
+    //const ev: Event | undefined = this.http.get<Event>(`${this.url}/${id}`);
+    if (id !== 0) {
+      return this.http.get<Event>(`${this.url}/${id}`);
     }
 
     return of(new Event());
+    //return this.http.get<Event>(`${this.url}/${id}`);
+    /*  const ev: Event | undefined = this.list.find(item => item.id === id);
+     if (ev) {
+       return of(ev);
+     }
+ 
+     return of(new Event()); */
   }
 
   update(event: Event): Observable<Event> {
-    const index: number = this.list.findIndex(item => item.id === event.id);
+    return this.http.put<Event>(`${this.url}/${event.id}`, event);
+    /* const index: number = this.list.findIndex(item => item.id === event.id);
     this.list.splice(index, 1, event);
     this.getAll();
-    return of(this.list[index]);
+    return of(this.list[index]); */
   }
 
-  create(event: Event): void {
-    const index: number = this.list.findIndex(item => item.id === event.id);
-    if (index === -1) {
-      this.list.push(new Event());
+  create(event: Event): /* void */ Observable<any> | Event {
+    if (event.id === 0) {
+      return this.http.post<Observable<any>>(`${this.url}/0`, event);
     }
-    this.getAll();
+    event = new Event();
+    return event;
+    /*  const index: number = this.list.findIndex(item => item.id === event.id);
+     if (index === -1) {
+       this.list.push(new Event());
+     }
+     this.getAll(); */
   }
 
-  remove(id: Number, event: Event): void {
+  remove(id: Number, event: any): Observable<any> {
     id = typeof id === 'string' ? parseInt(id, 10) : id;
-    const ev: number = this.list.findIndex(item => item.id === event.id);
+    event = event.id ? event.id : event;
+    return this.http.delete(`${this.url}/${event}`);
+    /* const ev: number = this.list.findIndex(item => item.id === event.id);
     this.list.splice(ev, 1);
-    this.getAll();
+    this.getAll(); */
   }
 }
