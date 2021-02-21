@@ -24,7 +24,7 @@ export class EventService {
 
   get(id: number): Observable<Event> {
     id = typeof id === 'string' ? parseInt(id, 10) : id;
-
+    console.log(`${this.url}/${id}`);
     //const ev: Event | undefined = this.http.get<Event>(`${this.url}/${id}`);
     if (id !== 0) {
       return this.http.get<Event>(`${this.url}/${id}`);
@@ -40,20 +40,19 @@ export class EventService {
      return of(new Event()); */
   }
 
-  update(event: Event): Observable<Event> {
-    return this.http.put<Event>(`${this.url}/${event.id}`, event);
+  update(event: Event): Observable<any> {
+
+    return this.http.put<any>(`${this.url}/${event.id}`, event);
     /* const index: number = this.list.findIndex(item => item.id === event.id);
     this.list.splice(index, 1, event);
     this.getAll();
     return of(this.list[index]); */
   }
 
-  create(event: Event): /* void */ Observable<any> | Event {
-    if (event.id === 0) {
-      return this.http.post<Observable<any>>(`${this.url}/0`, event);
-    }
-    event = new Event();
-    return event;
+  create(event: Event): /* void */ Observable<any> {
+
+    return this.http.post<Observable<any>>(`${this.url}`, event);
+
     /*  const index: number = this.list.findIndex(item => item.id === event.id);
      if (index === -1) {
        this.list.push(new Event());
@@ -61,10 +60,11 @@ export class EventService {
      this.getAll(); */
   }
 
-  remove(id: Number, event: any): Observable<any> {
-    id = typeof id === 'string' ? parseInt(id, 10) : id;
-    event = event.id ? event.id : event;
-    return this.http.delete(`${this.url}/${event}`);
+  remove(event: Event | number): Observable<Event> {
+    let id: Number = typeof (event) === 'number' ? event : event.id;
+    // event = event.id ? event.id : event;
+    console.log(`${this.url}/${id}`);
+    return this.http.delete<Event>(`${this.url}/${id}`);
     /* const ev: number = this.list.findIndex(item => item.id === event.id);
     this.list.splice(ev, 1);
     this.getAll(); */

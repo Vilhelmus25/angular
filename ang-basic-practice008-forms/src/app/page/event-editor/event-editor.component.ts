@@ -19,6 +19,7 @@ export class EventEditorComponent implements OnInit {
     switchMap(params => this.eventService.get(params.id))
   );
   event: Event = new Event();
+  submition: boolean = false;
 
 
   constructor(
@@ -32,13 +33,17 @@ export class EventEditorComponent implements OnInit {
   ngOnInit(): void { }
 
   onUpdate(form: NgForm, event: Event): void {
+    this.submition = true;
+    let eventType: Observable<Event>;
     if (event.id === 0) {
-      this.eventService.create(event)
+      eventType = this.eventService.create(event);
     }
-    this.eventService.update(event).subscribe(
-      ev => this.router.navigate([''])
+    else {
+      eventType = this.eventService.update(event);
+    }
+    eventType.subscribe(
+      ev => this.router.navigate([''])      // ekkor ugrik vissza a formra, a kreálás és az update után
     );
-
   }
 
   onAddNew(event: Event): void {
